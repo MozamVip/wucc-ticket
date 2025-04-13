@@ -537,7 +537,8 @@
 
     <script>
         // Global Variables
-        let ticketCounter = 1; // Start from 1, will be displayed as #01
+        // Global Variables
+        let ticketCounter = parseInt(localStorage.getItem('computingWeekTicketCounter') || '1');
         let userData = {}; // Store user form data
         
         // DOM Elements
@@ -680,28 +681,31 @@ function checkPaymentReturn() {
     }
 }
         
-        
         // Generate ticket with user data
-        function generateTicket(userData) {
-            // Update sections visibility
-            aboutSection.style.display = 'none';
-            formSection.style.display = 'none';
-            ticketSection.classList.add('active');
+function generateTicket(userData) {
+    // Update sections visibility
+    aboutSection.style.display = 'none';
+    formSection.style.display = 'none';
+    ticketSection.classList.add('active');
+    
+    // Populate ticket with user data
+    document.getElementById('ticketName').textContent = userData.fullName;
+    document.getElementById('ticketMatric').textContent = userData.matricNumber;
+    document.getElementById('ticketId').textContent = userData.ticketId || formatTicketId(ticketCounter);
+    
+    // Generate QR Code
+    generateQRCode(userData);
+    
+    // Increment ticket counter for next user
+    ticketCounter++;
+    localStorage.setItem('computingWeekTicketCounter', ticketCounter.toString());
+    
+    // Scroll to ticket
+    ticketSection.scrollIntoView({behavior: 'smooth'});
+}
+       
             
-            // Populate ticket with user data
-            document.getElementById('ticketName').textContent = userData.fullName;
-            document.getElementById('ticketMatric').textContent = userData.matricNumber;
-            document.getElementById('ticketId').textContent = userData.ticketId;
-            
-            // Generate QR Code
-            generateQRCode(userData);
-            
-            // Increment ticket counter for next user
-            ticketCounter++;
-            
-            // Scroll to ticket
-            ticketSection.scrollIntoView({behavior: 'smooth'});
-        }
+           
         
         // Generate QR Code for the ticket
         function generateQRCode(userData) {
