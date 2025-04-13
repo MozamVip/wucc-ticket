@@ -59,6 +59,25 @@
             color: var(--white);
         }
         
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 20px;
+        }
+        
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-gold);
+        }
+        
         /* Hero Section */
         .hero {
             background: linear-gradient(to right, var(--primary-blue), var(--light-blue));
@@ -148,6 +167,76 @@
             font-size: 40px;
             color: var(--primary-blue);
             margin-bottom: 15px;
+        }
+        
+        /* Schedule Section */
+        .schedule-section {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+        }
+        
+        .schedule-section h2 {
+            color: var(--primary-blue);
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 28px;
+        }
+        
+        .schedule-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .schedule-day {
+            display: flex;
+            flex-direction: column;
+            border-left: 4px solid var(--primary-gold);
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .schedule-day:before {
+            content: "";
+            position: absolute;
+            left: -12px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background-color: var(--primary-gold);
+            border-radius: 50%;
+            border: 4px solid var(--white);
+        }
+        
+        .day-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+        }
+        
+        .day-events {
+            background-color: var(--light-gray);
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .event-item {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .event-item:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--primary-gold);
+            font-size: 18px;
+            font-weight: bold;
         }
         
         /* Form Section */
@@ -383,8 +472,12 @@
                 margin-bottom: 20px;
             }
             
-            .form-section, .about-section {
+            .form-section, .about-section, .schedule-section {
                 padding: 20px;
+            }
+            
+            .nav-links {
+                display: none;
             }
         }
     </style>
@@ -394,6 +487,11 @@
     <header>
         <div class="container header-content">
             <a href="#" class="logo">Computing<span>Week</span> 2025</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#schedule">Schedule</a></li>
+                <li><a href="#tickets">Tickets</a></li>
+            </ul>
         </div>
     </header>
 
@@ -401,7 +499,7 @@
     <section class="hero">
         <div class="container">
             <h1>Computing Week 2025</h1>
-            <div class="hero-event-date">April 28th -May 3rd, 2025</div>
+            <div class="hero-event-date">April 28th - May 3rd, 2025</div>
             <p>Join us for an incredible week of tech talks, workshops, networking, and more! Get your ticket now to secure your spot at the biggest computing event of the year.</p>
             <button id="getTicketBtn" class="btn">Get Your Ticket</button>
         </div>
@@ -418,17 +516,65 @@
                 <div class="feature">
                     <div class="feature-icon">🎯</div>
                     <h3>Expert Speakers</h3>
-                    <p>Learn from industry leaders and tech experts</p>
+                    <p>Learn from industry leaders and tech experts on CV and LinkedIn Optimization </p>
                 </div>
                 <div class="feature">
                     <div class="feature-icon">💻</div>
-                    <h3>Hands-on Workshops</h3>
-                    <p>Participate in practical coding and tech sessions</p>
+                    <h3>Esport Tournament</h3>
+                    <p>Show your Skills in FIFA and COD</p>
                 </div>
                 <div class="feature">
                     <div class="feature-icon">🚀</div>
                     <h3>Innovation Showcase</h3>
                     <p>Experience cutting-edge tech demonstrations</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Schedule Section -->
+        <section id="scheduleSection" class="schedule-section">
+            <h2>Event Schedule</h2>
+            <div class="schedule-container">
+                <div class="schedule-day">
+                    <div class="day-title">Monday - April 28th</div>
+                    <div class="day-events">
+                        <div class="event-item">Seminar on CV and LinkedIn Optimization</div>
+                        <div class="event-item">Networking Session</div>
+                    </div>
+                </div>
+                
+                <div class="schedule-day">
+                    <div class="day-title">Tuesday - Aprli 29th</div>
+                    <div class="day-events">
+                        <div class="event-item">Tech Quiz Competition</div>
+                        <div class="event-item">Eatathon</div>
+                        <div class="event-item">Movie Night</div>
+                    </div>
+                </div>
+                
+                <div class="schedule-day">
+                    <div class="day-title">Wednesday - April 30th</div>
+                    <div class="day-events">
+                        <div class="event-item">Computing Cup - Day 1</div>
+                        <div class="event-item">Technical Workshops</div>
+                    </div>
+                </div>
+                
+                <div class="schedule-day">
+                    <div class="day-title">Thursday - May 1st</div>
+                    <div class="day-events">
+                        <div class="event-item">Computing Cup - Day 2</div>
+                        <div class="event-item">Industry Panel Discussion</div>
+                    </div>
+                </div>
+                
+                <div class="schedule-day">
+                    <div class="day-title">Friday - May 2nd</div>
+                    <div class="day-events">
+                        <div class="event-item">Hackathon</div>
+                        <div class="event-item">Award Ceremony</div>
+                        <div class="event-item">Closing Reception</div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -500,7 +646,7 @@
                     </div>
                 </div>
                 <div class="ticket-footer">
-                    Valid for one attendee • Not transferable • April 28th - May 3rd, 2025
+                    Valid for one attendee • Not transferable • May 15-20, 2025
                 </div>
             </div>
             
@@ -514,9 +660,9 @@
     <footer>
         <div class="container footer-content">
             <div class="footer-links">
-                <a href="#">About</a>
-                <a href="#">Speakers</a>
-                <a href="#">Schedule</a>
+                <a href="#about">About</a>
+                <a href="#schedule">Schedule</a>
+                <a href="#tickets">Tickets</a>
                 <a href="#">Contact</a>
             </div>
             <div class="copyright">
@@ -537,13 +683,13 @@
 
     <script>
         // Global Variables
-        // Global Variables
         let ticketCounter = parseInt(localStorage.getItem('computingWeekTicketCounter') || '1');
         let userData = {}; // Store user form data
         
         // DOM Elements
         const getTicketBtn = document.getElementById('getTicketBtn');
         const aboutSection = document.getElementById('aboutSection');
+        const scheduleSection = document.getElementById('scheduleSection');
         const formSection = document.getElementById('formSection');
         const ticketSection = document.getElementById('ticketSection');
         const ticketForm = document.getElementById('ticketForm');
@@ -559,52 +705,67 @@
             getTicketBtn.addEventListener('click', showTicketForm);
             ticketForm.addEventListener('submit', handleFormSubmit);
             downloadBtn.addEventListener('click', downloadTicket);
+            
+            // Add smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId + 'Section') || document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
         });
         
         // Show the ticket form
         function showTicketForm() {
             aboutSection.style.display = 'none';
+            scheduleSection.style.display = 'none';
             formSection.classList.add('active');
             
             // Scroll to form
             formSection.scrollIntoView({behavior: 'smooth'});
         }
         
-       // Handle form submission
-function handleFormSubmit(event) {
-    event.preventDefault();
-    
-    // Validate the form
-    if (!validateForm()) {
-        return false;
-    }
-    
-    // Generate ticket ID for this user
-    const currentTicketId = formatTicketId(ticketCounter);
-    ticketCounter++;
-    localStorage.setItem('computingWeekTicketCounter', ticketCounter.toString());
-    
-    // Store form data
-    userData = {
-        fullName: document.getElementById('fullName').value,
-        matricNumber: document.getElementById('matricNumber').value,
-        email: document.getElementById('email').value,
-        phone: document.getElementById('phone').value,
-        ticketId: currentTicketId
-    };
-    
-    // Store in local storage for retrieval after payment
-    localStorage.setItem('computingWeekUserData', JSON.stringify(userData));
-    
-    // Show loading overlay
-    loadingOverlay.style.display = 'flex';
-    
-    // Redirect to Paystack payment page
-    setTimeout(() => {
-        window.location.href = 'https://paystack.com/pay/whe369b3vg';
-    }, 1000);
-}
-          
+        // Handle form submission
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            // Validate the form
+            if (!validateForm()) {
+                return false;
+            }
+            
+            // Generate ticket ID for this user
+            const currentTicketId = formatTicketId(ticketCounter);
+            ticketCounter++;
+            localStorage.setItem('computingWeekTicketCounter', ticketCounter.toString());
+            
+            // Store form data
+            userData = {
+                fullName: document.getElementById('fullName').value,
+                matricNumber: document.getElementById('matricNumber').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                ticketId: currentTicketId
+            };
+            
+            // Store in local storage for retrieval after payment
+            localStorage.setItem('computingWeekUserData', JSON.stringify(userData));
+            
+            // Show loading overlay
+            loadingOverlay.style.display = 'flex';
+            
+            // Redirect to Paystack payment page
+            setTimeout(() => {
+                window.location.href = 'https://paystack.com/pay/whe369b3vg';
+            }, 1000);
+        }
         
         // Validate the form
         function validateForm() {
@@ -661,53 +822,51 @@ function handleFormSubmit(event) {
             
             return isValid;
         }
-
+        
         // Check if returning from payment
-function checkPaymentReturn() {
-    // Check URL parameters for payment success
-    const urlParams = new URLSearchParams(window.location.search);
-    const paymentStatus = urlParams.get('payment');
-    
-    // Check for Paystack's double question mark format
-    const hasPaystackSuccess = window.location.href.includes('?payment=success?reference=');
-    
-    if (paymentStatus === 'success' || hasPaystackSuccess) {
-        // Get stored user data
-        const storedData = localStorage.getItem('computingWeekUserData');
-        
-        if (storedData) {
-            userData = JSON.parse(storedData);
+        function checkPaymentReturn() {
+            // Check URL parameters for payment success
+            const urlParams = new URLSearchParams(window.location.search);
+            const paymentStatus = urlParams.get('payment');
             
-            // Display the ticket
-            generateTicket(userData);
+            // Check for Paystack's double question mark format
+            const hasPaystackSuccess = window.location.href.includes('?payment=success?reference=');
             
-            // Clear localStorage
-            localStorage.removeItem('computingWeekUserData');
+            if (paymentStatus === 'success' || hasPaystackSuccess) {
+                // Get stored user data
+                const storedData = localStorage.getItem('computingWeekUserData');
+                
+                if (storedData) {
+                    userData = JSON.parse(storedData);
+                    
+                    // Display the ticket
+                    generateTicket(userData);
+                    
+                    // Clear localStorage
+                    localStorage.removeItem('computingWeekUserData');
+                }
+            }
         }
-    }
-}
         
-       // Generate ticket with user data
-function generateTicket(userData) {
-    // Update sections visibility
-    aboutSection.style.display = 'none';
-    formSection.style.display = 'none';
-    ticketSection.classList.add('active');
-    
-    // Populate ticket with user data
-    document.getElementById('ticketName').textContent = userData.fullName;
-    document.getElementById('ticketMatric').textContent = userData.matricNumber;
-    document.getElementById('ticketId').textContent = userData.ticketId;
-    
-    // Generate QR Code
-    generateQRCode(userData);
-    
-    // Scroll to ticket
-    ticketSection.scrollIntoView({behavior: 'smooth'});
-}
-       
+        // Generate ticket with user data
+        function generateTicket(userData) {
+            // Update sections visibility
+            aboutSection.style.display = 'none';
+            scheduleSection.style.display = 'none';
+            formSection.style.display = 'none';
+            ticketSection.classList.add('active');
             
-           
+            // Populate ticket with user data
+            document.getElementById('ticketName').textContent = userData.fullName;
+            document.getElementById('ticketMatric').textContent = userData.matricNumber;
+            document.getElementById('ticketId').textContent = userData.ticketId;
+            
+            // Generate QR Code
+            generateQRCode(userData);
+            
+            // Scroll to ticket
+            ticketSection.scrollIntoView({behavior: 'smooth'});
+        }
         
         // Generate QR Code for the ticket
         function generateQRCode(userData) {
