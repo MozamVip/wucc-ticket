@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computing Week 2025 - Get Your Ticket</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-blue: #001F54;
+            --primary-gold: #FFD700;
+            --light-blue: #0052CC;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --dark-gray: #333333;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-gold);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--white);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(to right, var(--primary-blue), var(--light-blue));
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .hero-event-date {
+            font-size: 24px;
+            color: var(--primary-gold);
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-gold);
+            color: var(--primary-blue);
+            font-size: 18px;
+            font-weight: bold;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        
+        .btn:hover {
+            background-color: #FFEA80;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 60px 0;
+            min-height: 60vh;
+        }
+        
+        /* About Section */
+        .about-section {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .about-section h2 {
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .feature {
+            flex: 1;
+            min-width: 200px;
+            background-color: var(--light-gray);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+        
+        /* Form Section */
+        .form-section {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: none; /* Hidden initially */
+        }
+        
+        .form-section.active {
+            display: block;
+        }
+        
+        .form-section h2 {
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus {
+            border-color: var(--primary-blue);
+            outline: none;
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .form-actions {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        /* Ticket Section */
+        .ticket-section {
+            display: none; /* Hidden initially */
+            padding: 40px 0;
+        }
+        
+        .ticket-section.active {
+            display: block;
+        }
+        
+        .ticket-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--primary-blue), #003B94);
+            color: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        
+        .ticket-header {
+            background-color: var(--primary-gold);
+            color: var(--primary-blue);
+            padding: 20px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 22px;
+            position: relative;
+        }
+        
+        .ticket-header:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: repeating-linear-gradient(45deg, var(--primary-blue), var(--primary-blue) 10px, transparent 10px, transparent 20px);
+        }
+        
+        .ticket-body {
+            padding: 25px;
+        }
+        
+        .ticket-info {
+            margin-bottom: 20px;
+        }
+        
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        
+        .info-label {
+            color: var(--primary-gold);
+            font-weight: 600;
+        }
+        
+        .info-value {
+            text-align: right;
+            font-weight: 400;
+        }
+        
+        .ticket-qr {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .qr-code {
+            background-color: var(--white);
+            display: inline-block;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        
+        .ticket-footer {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            text-align: center;
+            font-size: 14px;
+        }
+        
+        .download-actions {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .btn-download {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+        
+        .btn-download:hover {
+            background-color: var(--light-blue);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-links {
+            margin: 20px 0;
+        }
+        
+        .footer-links a {
+            color: var(--primary-gold);
+            margin: 0 15px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+        }
+        
+        .copyright {
+            font-size: 14px;
+            color: #999;
+        }
+        
+        /* Loading Spinner */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary-gold);
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .features {
+                flex-direction: column;
+            }
+            
+            .feature {
+                margin-bottom: 20px;
+            }
+            
+            .form-section, .about-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">Computing<span>Week</span> 2025</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Computing Week 2025</h1>
+            <div class="hero-event-date">May 15-20, 2025</div>
+            <p>Join us for an incredible week of tech talks, workshops, networking, and more! Get your ticket now to secure your spot at the biggest computing event of the year.</p>
+            <button id="getTicketBtn" class="btn">Get Your Ticket</button>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content container">
+        <!-- About Section -->
+        <section id="aboutSection" class="about-section">
+            <h2>About Computing Week 2025</h2>
+            <p>Computing Week is an annual tech festival featuring industry leaders, innovative workshops, networking opportunities, and the latest in computing technologies. Don't miss this chance to expand your knowledge and connect with professionals!</p>
+            
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Expert Speakers</h3>
+                    <p>Learn from industry leaders and tech experts</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💻</div>
+                    <h3>Hands-on Workshops</h3>
+                    <p>Participate in practical coding and tech sessions</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Innovation Showcase</h3>
+                    <p>Experience cutting-edge tech demonstrations</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Form Section -->
+        <section id="formSection" class="form-section">
+            <h2>Purchase Your Ticket</h2>
+            <form id="ticketForm">
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                    <div class="error-message" id="fullNameError">Please enter your full name</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="matricNumber">Matric Number</label>
+                    <input type="text" id="matricNumber" name="matricNumber" required>
+                    <div class="error-message" id="matricNumberError">Please enter a valid matric number</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                    <div class="error-message" id="emailError">Please enter a valid email address</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required>
+                    <div class="error-message" id="phoneError">Please enter a valid phone number</div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn">Continue to Pay</button>
+                </div>
+            </form>
+        </section>
+        
+        <!-- Ticket Section -->
+        <section id="ticketSection" class="ticket-section">
+            <div class="ticket-container">
+                <div class="ticket-header">
+                    COMPUTING WEEK 2025
+                </div>
+                <div class="ticket-body">
+                    <div class="ticket-info">
+                        <div class="info-row">
+                            <span class="info-label">Full Name:</span>
+                            <span class="info-value" id="ticketName">John Doe</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Matric Number:</span>
+                            <span class="info-value" id="ticketMatric">STU12345</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Ticket ID:</span>
+                            <span class="info-value" id="ticketId">#01</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Ticket Price:</span>
+                            <span class="info-value">₦5,000</span>
+                        </div>
+                    </div>
+                    
+                    <div class="ticket-qr">
+                        <div class="qr-code" id="qrCode">
+                            <!-- QR Code will be generated here -->
+                        </div>
+                    </div>
+                </div>
+                <div class="ticket-footer">
+                    Valid for one attendee • Not transferable • May 15-20, 2025
+                </div>
+            </div>
+            
+            <div class="download-actions">
+                <button id="downloadBtn" class="btn btn-download">Download Ticket</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-links">
+                <a href="#">About</a>
+                <a href="#">Speakers</a>
+                <a href="#">Schedule</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Computing Week. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- QR Code Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- html2canvas for ticket download -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <script>
+        // Global Variables
+        let ticketCounter = 1; // Start from 1, will be displayed as #01
+        let userData = {}; // Store user form data
+        
+        // DOM Elements
+        const getTicketBtn = document.getElementById('getTicketBtn');
+        const aboutSection = document.getElementById('aboutSection');
+        const formSection = document.getElementById('formSection');
+        const ticketSection = document.getElementById('ticketSection');
+        const ticketForm = document.getElementById('ticketForm');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        const downloadBtn = document.getElementById('downloadBtn');
+        
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if we're returning from payment
+            checkPaymentReturn();
+            
+            // Add event listeners
+            getTicketBtn.addEventListener('click', showTicketForm);
+            ticketForm.addEventListener('submit', handleFormSubmit);
+            downloadBtn.addEventListener('click', downloadTicket);
+        });
+        
+        // Show the ticket form
+        function showTicketForm() {
+            aboutSection.style.display = 'none';
+            formSection.classList.add('active');
+            
+            // Scroll to form
+            formSection.scrollIntoView({behavior: 'smooth'});
+        }
+        
+        // Handle form submission
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            // Validate the form
+            if (!validateForm()) {
+                return false;
+            }
+            
+            // Store form data
+            userData = {
+                fullName: document.getElementById('fullName').value,
+                matricNumber: document.getElementById('matricNumber').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                ticketId: formatTicketId(ticketCounter)
+            };
+            
+            // Store in local storage for retrieval after payment
+            localStorage.setItem('computingWeekUserData', JSON.stringify(userData));
+            
+            // Show loading overlay
+            loadingOverlay.style.display = 'flex';
+            
+            // Redirect to Paystack payment page
+            setTimeout(() => {
+                window.location.href = 'https://paystack.com/pay/whe369b3vg';
+            }, 1000);
+        }
+        
+        // Validate the form
+        function validateForm() {
+            let isValid = true;
+            
+            // Validate Full Name
+            const fullName = document.getElementById('fullName');
+            const fullNameError = document.getElementById('fullNameError');
+            
+            if (!fullName.value.trim()) {
+                fullNameError.style.display = 'block';
+                fullName.focus();
+                isValid = false;
+            } else {
+                fullNameError.style.display = 'none';
+            }
+            
+            // Validate Matric Number
+            const matricNumber = document.getElementById('matricNumber');
+            const matricNumberError = document.getElementById('matricNumberError');
+            
+            if (!matricNumber.value.trim()) {
+                matricNumberError.style.display = 'block';
+                if (isValid) matricNumber.focus();
+                isValid = false;
+            } else {
+                matricNumberError.style.display = 'none';
+            }
+            
+            // Validate Email
+            const email = document.getElementById('email');
+            const emailError = document.getElementById('emailError');
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            
+            if (!emailPattern.test(email.value)) {
+                emailError.style.display = 'block';
+                if (isValid) email.focus();
+                isValid = false;
+            } else {
+                emailError.style.display = 'none';
+            }
+            
+            // Validate Phone
+            const phone = document.getElementById('phone');
+            const phoneError = document.getElementById('phoneError');
+            
+            if (!phone.value.trim() || isNaN(phone.value.replace(/\s+/g, ''))) {
+                phoneError.style.display = 'block';
+                if (isValid) phone.focus();
+                isValid = false;
+            } else {
+                phoneError.style.display = 'none';
+            }
+            
+            return isValid;
+        }
+        
+        // Check if returning from payment
+        function checkPaymentReturn() {
+            // Check URL parameters for payment success
+            const urlParams = new URLSearchParams(window.location.search);
+            const paymentStatus = urlParams.get('payment');
+            
+            if (paymentStatus === 'success') {
+                // Get stored user data
+                const storedData = localStorage.getItem('computingWeekUserData');
+                
+                if (storedData) {
+                    userData = JSON.parse(storedData);
+                    
+                    // Display the ticket
+                    generateTicket(userData);
+                    
+                    // Clear localStorage
+                    localStorage.removeItem('computingWeekUserData');
+                }
+            }
+        }
+        
+        // Generate ticket with user data
+        function generateTicket(userData) {
+            // Update sections visibility
+            aboutSection.style.display = 'none';
+            formSection.style.display = 'none';
+            ticketSection.classList.add('active');
+            
+            // Populate ticket with user data
+            document.getElementById('ticketName').textContent = userData.fullName;
+            document.getElementById('ticketMatric').textContent = userData.matricNumber;
+            document.getElementById('ticketId').textContent = userData.ticketId;
+            
+            // Generate QR Code
+            generateQRCode(userData);
+            
+            // Increment ticket counter for next user
+            ticketCounter++;
+            
+            // Scroll to ticket
+            ticketSection.scrollIntoView({behavior: 'smooth'});
+        }
+        
+        // Generate QR Code for the ticket
+        function generateQRCode(userData) {
+            const qrContainer = document.getElementById('qrCode');
+            qrContainer.innerHTML = ''; // Clear existing content
+            
+            // Create QR Code data
+            const qrData = `Name: ${userData.fullName}, Matric: ${userData.matricNumber}, Ticket: ${userData.ticketId}`;
+            
+            // Generate QR Code
+            new QRCode(qrContainer, {
+                text: qrData,
+                width: 120,
+                height: 120,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+        }
+        
+        // Format ticket ID with leading zeros
+        function formatTicketId(counter) {
+            return '#' + counter.toString().padStart(2, '0');
+        }
+        
+        // Download ticket as image
+        function downloadTicket() {
+            const ticketElement = document.querySelector('.ticket-container');
+            
+            // Show loading
+            loadingOverlay.style.display = 'flex';
+            
+            html2canvas(ticketElement).then(canvas => {
+                const imageData = canvas.toDataURL('image/png');
+                const link = document.createElement('a');
+                
+                link.href = imageData;
+                link.download = `ComputingWeek2025_Ticket_${userData.ticketId.replace('#', '')}.png`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                // Hide loading
+                loadingOverlay.style.display = 'none';
+            });
+        }
+        
+        // Simulate Paystack redirect (for development/testing)
+        function simulatePaystackReturn() {
+            // This function is for testing only
+            window.location.href = window.location.origin + window.location.pathname + '?payment=success';
+        }
+    </script>
+</body>
+</html>
