@@ -570,35 +570,41 @@
             formSection.scrollIntoView({behavior: 'smooth'});
         }
         
-        // Handle form submission
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            
-            // Validate the form
-            if (!validateForm()) {
-                return false;
-            }
-            
-            // Store form data
-            userData = {
-                fullName: document.getElementById('fullName').value,
-                matricNumber: document.getElementById('matricNumber').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                ticketId: formatTicketId(ticketCounter)
-            };
-            
-            // Store in local storage for retrieval after payment
-            localStorage.setItem('computingWeekUserData', JSON.stringify(userData));
-            
-            // Show loading overlay
-            loadingOverlay.style.display = 'flex';
-            
-            // Redirect to Paystack payment page
-            setTimeout(() => {
-                window.location.href = 'https://paystack.com/pay/whe369b3vg';
-            }, 1000);
-        }
+       // Handle form submission
+function handleFormSubmit(event) {
+    event.preventDefault();
+    
+    // Validate the form
+    if (!validateForm()) {
+        return false;
+    }
+    
+    // Generate ticket ID for this user
+    const currentTicketId = formatTicketId(ticketCounter);
+    ticketCounter++;
+    localStorage.setItem('computingWeekTicketCounter', ticketCounter.toString());
+    
+    // Store form data
+    userData = {
+        fullName: document.getElementById('fullName').value,
+        matricNumber: document.getElementById('matricNumber').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        ticketId: currentTicketId
+    };
+    
+    // Store in local storage for retrieval after payment
+    localStorage.setItem('computingWeekUserData', JSON.stringify(userData));
+    
+    // Show loading overlay
+    loadingOverlay.style.display = 'flex';
+    
+    // Redirect to Paystack payment page
+    setTimeout(() => {
+        window.location.href = 'https://paystack.com/pay/wucc-week';
+    }, 1000);
+}
+          
         
         // Validate the form
         function validateForm() {
@@ -681,7 +687,7 @@ function checkPaymentReturn() {
     }
 }
         
-        // Generate ticket with user data
+       // Generate ticket with user data
 function generateTicket(userData) {
     // Update sections visibility
     aboutSection.style.display = 'none';
@@ -691,14 +697,10 @@ function generateTicket(userData) {
     // Populate ticket with user data
     document.getElementById('ticketName').textContent = userData.fullName;
     document.getElementById('ticketMatric').textContent = userData.matricNumber;
-    document.getElementById('ticketId').textContent = userData.ticketId || formatTicketId(ticketCounter);
+    document.getElementById('ticketId').textContent = userData.ticketId;
     
     // Generate QR Code
     generateQRCode(userData);
-    
-    // Increment ticket counter for next user
-    ticketCounter++;
-    localStorage.setItem('computingWeekTicketCounter', ticketCounter.toString());
     
     // Scroll to ticket
     ticketSection.scrollIntoView({behavior: 'smooth'});
