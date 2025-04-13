@@ -654,28 +654,32 @@
             
             return isValid;
         }
-        
+
         // Check if returning from payment
-        function checkPaymentReturn() {
-            // Check URL parameters for payment success
-            const urlParams = new URLSearchParams(window.location.search);
-            const paymentStatus = urlParams.get('payment');
+function checkPaymentReturn() {
+    // Check URL parameters for payment success
+    const urlParams = new URLSearchParams(window.location.search);
+    const paymentStatus = urlParams.get('payment');
+    
+    // Check for Paystack's double question mark format
+    const hasPaystackSuccess = window.location.href.includes('?payment=success?reference=');
+    
+    if (paymentStatus === 'success' || hasPaystackSuccess) {
+        // Get stored user data
+        const storedData = localStorage.getItem('computingWeekUserData');
+        
+        if (storedData) {
+            userData = JSON.parse(storedData);
             
-            if (paymentStatus === 'success') {
-                // Get stored user data
-                const storedData = localStorage.getItem('computingWeekUserData');
-                
-                if (storedData) {
-                    userData = JSON.parse(storedData);
-                    
-                    // Display the ticket
-                    generateTicket(userData);
-                    
-                    // Clear localStorage
-                    localStorage.removeItem('computingWeekUserData');
-                }
-            }
+            // Display the ticket
+            generateTicket(userData);
+            
+            // Clear localStorage
+            localStorage.removeItem('computingWeekUserData');
         }
+    }
+}
+        
         
         // Generate ticket with user data
         function generateTicket(userData) {
