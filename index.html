@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Computing Week 2025 - Get Your Ticket</title>
-    <link href="welsu.png" rel="icon">
     <style>
         /* Reset and Base Styles */
         * {
@@ -481,6 +480,146 @@
                 display: none;
             }
         }
+
+        .pricing-section {
+      max-width: 1200px;
+      margin: 5rem auto;
+      padding: 2rem;
+    }
+
+    .pricing-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .pricing-header h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #1a1a1a;
+    }
+
+    .pricing-header p {
+      font-size: 1.1rem;
+      color: #666;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .pricing-cards {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .pricing-card {
+      background: white;
+      border-radius: 1rem;
+      overflow: hidden;
+      width: 100%;
+      max-width: 350px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      position: relative;
+      border: 2px solid transparent;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+      border-color: #6b46c1;
+    }
+
+    .card-header {
+      padding: 2rem;
+      background: linear-gradient(135deg, #6b46c1 0%, #9f7aea 100%);
+      color: white;
+      text-align: center;
+    }
+
+    .standard-ticket .card-header {
+      background: linear-gradient(135deg, #6b46c1 0%, #9f7aea 100%);
+    }
+
+    .premium-ticket .card-header {
+      background: linear-gradient(135deg, #1a202c 0%, #4a5568 100%);
+    }
+
+    .price {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .price-text {
+      font-size: 1rem;
+      opacity: 0.85;
+    }
+
+    .card-body {
+      padding: 2rem;
+    }
+
+    .features {
+      list-style: none;
+      margin-bottom: 2rem;
+    }
+
+    .features li {
+      padding: 0.5rem 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .features li::before {
+      content: "✓";
+      margin-right: 0.5rem;
+      color: #6b46c1;
+      font-weight: bold;
+    }
+
+    .premium-ticket .features li::before {
+      color: #4a5568;
+    }
+
+    .ticket-button {
+      display: block;
+      padding: 1rem;
+      text-align: center;
+      color: white;
+      background: #6b46c1;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .standard-ticket .ticket-button {
+      background: #6b46c1;
+    }
+
+    .premium-ticket .ticket-button {
+      background: #1a202c;
+    }
+
+    .ticket-button:hover {
+      opacity: 0.9;
+      transform: scale(1.03);
+    }
+
+    @media (max-width: 768px) {
+      .pricing-cards {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .pricing-card {
+        margin-bottom: 2rem;
+      }
+    }
     </style>
 </head>
 <body>
@@ -502,35 +641,62 @@
             <h1>Computing Week 2025</h1>
             <div class="hero-event-date">April 28th - May 3rd, 2025</div>
             <p>Join us for an incredible week of tech talks, workshops, networking, and more! Get your ticket now to secure your spot at the biggest computing event of the year.</p>
-            <button id="getTicketBtn" class="btn">Get Your Ticket</button>
+            <a href="#pricing" id="getTicketBtn" class="btn">Get Your Ticket</a>
+
         </div>
     </section>
 
     <!-- Main Content -->
     <main class="main-content container">
         <!-- About Section -->
-        <section id="aboutSection" class="about-section">
-            <h2>About Computing Week 2025</h2>
-            <p>Computing Week is an annual tech festival featuring industry leaders, innovative workshops, networking opportunities, and the latest in computing technologies. Don't miss this chance to expand your knowledge and connect with professionals!</p>
-            
-            <div class="features">
-                <div class="feature">
-                    <div class="feature-icon">🎯</div>
-                    <h3>Expert Speakers</h3>
-                    <p>Learn from industry leaders and tech experts from NNPC on CV and LinkedIn Optimization </p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">🚀</div>
-                    <h3>Esport Tournament</h3>
-                    <p>Show your Skills in FIFA and COD</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">💻</div>
-                    <h3>Hackathon</h3>
-                    <p>Wellspring University vs Igbinedion University</p>
-                </div>
+        <section id="pricing" class="pricing-section">
+            <div class="pricing-header">
+              <h2>Select Your Ticket</h2>
+              <p>Choose the ticket that best suits your needs and secure your spot at our upcoming event.</p>
             </div>
-        </section>
+            
+            <div class="pricing-cards">
+              <!-- Standard Ticket -->
+              <div class="pricing-card standard-ticket">
+                <div class="card-header">
+                  <div class="price">₦2,000</div>
+                  <div class="price-text">Standard Ticket</div>
+                </div>
+                <div class="card-body">
+                  <ul class="features">
+                    <li>General admission to the event</li>
+                    <li>Access to main sessions</li>
+                    <li>Networking opportunities</li>
+                    <li> Complimentary Refreshment</li>
+                  </ul>
+                  <a href="https://paystack.com/pay/wucc-week" class="ticket-button">Get Ticket</a>
+                </div>
+              </div>
+              
+              <!-- Premium Ticket -->
+              <div class="pricing-card premium-ticket">
+                <div class="card-header">
+                  <div class="price">₦5,000</div>
+                  <div class="price-text">Premium Ticket</div>
+                </div>
+                <div class="card-body">
+                  <ul class="features">
+                    <li>All Standard ticket benefits</li>
+                    <li>VIP seating arrangement</li>
+                    <li>Front Row Access on Movie Day</li>
+                    <li>Exclusive workshop access</li>
+                    <li>Free Access to Eatathon</li>
+                    <li>Complimentary refreshments</li>
+                    <li>Free VR Games for 5 Min</li>
+                    <li>Free Pass to Participate in COD</li>
+                    <li>Free Pass to Participate in FIFA</li>
+                    <li>10% off Megahub Restaurant</li>
+                  </ul>
+                  <a href="https://paystack.com/pay/Standard-ticket" class="ticket-button">Get Ticket</a>
+                </div>
+              </div>
+            </div>
+          </section>
         
         <!-- Schedule Section -->
         <section id="scheduleSection" class="schedule-section">
@@ -545,7 +711,7 @@
                 </div>
                 
                 <div class="schedule-day">
-                    <div class="day-title">Tuesday - April 29th</div>
+                    <div class="day-title">Tuesday - Aprli 29th</div>
                     <div class="day-events">
                         <div class="event-item">Tech Quiz Competition</div>
                         <div class="event-item">Eatathon</div>
@@ -774,7 +940,7 @@
             
             // Redirect to Paystack payment page
             setTimeout(() => {
-                window.location.href = 'https://paystack.com/pay/wucc-week';
+                window.location.href = 'https://paystack.com/pay/whe369b3vg';
             }, 1000);
         }
         
